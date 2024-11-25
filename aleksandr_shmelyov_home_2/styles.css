@@ -1,0 +1,60 @@
+body {
+    color: #292222;
+    background-color: #a08888;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.h1 {
+    background-color: #d8cece;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#header {
+    color: #292222;
+    background-color: #cfc2c2;
+    border-radius: 20px;
+}
+
+.main-header a {
+    color: #292222;
+    text-decoration: none;
+}
+
+.main-header nav {
+    background-color: #cfc2c2;
+    border-radius: 20px;
+    display: inline;
+    text-align: center;
+}
+
+.main-header ul {
+    list-style: none;
+}
+
+.main-header li {
+    display: inline-block;
+    margin-right: 25px;
+}
+
+.main-footer {
+    background-color: #d8cece;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Изменения шрифтов для разной ширины экрана */
+
+@media (max-width: 480px) {
+    * {
+        font-family: cursive;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 768px)  {
+    * {
+        font-family:fantasy;
+    }
+}
