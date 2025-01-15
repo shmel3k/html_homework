@@ -18,7 +18,7 @@ input[type="text"] {
     box-sizing: border-box;
 }
 
-button {
+button[type="submit"] {
     padding: 10px 20px;
     margin: 10px auto;
     font-size: 16px;
@@ -28,4 +28,31 @@ button {
     color: #fff;    
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.alphabetButtonDiv {
+    padding: 5px auto;
+}
+
+.alphaButton {
+    padding: 10px 10px;
+    margin: 10px auto;
+    font-size: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1d3c5e;
+    color: #fff;    
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.result {
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: center;
+    img {
+        max-width: 300px;
+        height: auto;
+    }
 }
