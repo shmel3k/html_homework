@@ -1,12 +1,12 @@
 function init() {
 
-   // https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London%2CUK?unitGroup=metric&key=3YRH8JGDV3RUXAPTWDQVUE695
-    
+    // https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London%2CUK?unitGroup=metric&key=3YRH8JGDV3RUXAPTWDQVUE695
+
     const form = document.getElementById("locationForm");
     const locationName = document.getElementById('location');
     const resultDiv = document.querySelector('.result');
 
-    // Search by name
+    // Search by city
     form.addEventListener("submit", (event) => {
         event.preventDefault();
 
@@ -30,15 +30,14 @@ function init() {
                     if (response.ok) {
                         return response.json().then(response => {
                             if (response) {
-                           //     weatherResultForeach(response.days);
-                           weatherResult(response);
+                                weatherResultForeach(response);
                             } else {
-                                resultDiv.innerHTML = "No recipes found";
+                                resultDiv.innerHTML = "No cities found";
                             }
                         })
                     } else {
                         if (response.status === 404) {
-                            resultDiv.innerHTML = "User not found";
+                            resultDiv.innerHTML = "City not found";
                         } else {
                             resultDiv.innerHTML = "An error occurred";
                         }
@@ -47,55 +46,43 @@ function init() {
                 })
         }
     });
+
     // Function to display weather results
-
-  /*  function weatherResultForeach(data) {
-             data.forEach(item => {
-            resultDiv.innerHTML += `
-            <div class = "resultDay">
-            <h2>${item.datetime}</h2>
-            <p>${item.temp}</p>
-            <p>${item.description}</p>
-            <p>${item.icon}</p>
-                <div class = "resultHours">  
-                <p>${item.hours.map(hour => hour.datetime + ' ' + hour.temp).join(', ')}</p>
-                </div>
-            </div>
-            `
-        })
-    }
-*/
-
-    function weatherResult(data) {
-        const { address, days } = data || {};
-        if (!days) {
-            displayError('Прогноз недоступен для выбранного города.');
-            return;
-        }
-    
-        resultDiv.innerHTML = `<h2>Прогноз для города: ${address}</h2>`;
-    
+    function weatherResultForeach(data) {
+        const {
+            days
+        } = data;
         days.forEach(day => {
-            const { datetime, tempmax, tempmin, hours } = day;
-    
-            let hourlyWeather = '<h3>Погода по часам:</h3>';
+            const {
+                datetime,
+                temp,
+                tempmax,
+                tempmin,
+                hours,
+                conditions
+            } = day;
+
+            let hourResult = '';
             hours.forEach(hour => {
-                hourlyWeather += `
-                    <p><strong>${hour.datetime}: </strong>${hour.temp}°C, ${hour.conditions}</p>
-                `;
+                hourResult += `<p> ${hour.datetime}: ${hour.temp}°C </p>`
             });
-    
+
             resultDiv.innerHTML += `
-                <div class="day">
-                    <h3>${datetime}</h3>
-                    <p>Максимальная температура: ${tempmax}°C</p>
-                    <p>Минимальная температура: ${tempmin}°C</p>
-                    ${hourlyWeather}
+                <div class="resultDay">
+                    <h2> ${datetime} </h2>
+                    <p> Avarage temperature: ${temp}°C </p>
+                    <p> Maximum temperature: ${tempmax}°C </p>
+                    <p> Minimum temperature: ${tempmin}°C </p>
+                    <p class="conditions"> Conditions: ${conditions} </p>
+                    <h4 id="hourTitle"> Hourly forecast </h4>
+                        <div class="resultHour">
+                            ${hourResult}
+                        </div>
                 </div>
-            `;
+                `;
+
         });
     }
-    
 }
 
 document.addEventListener("DOMContentLoaded", init);

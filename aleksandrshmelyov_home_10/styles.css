@@ -1,5 +1,5 @@
 body {
-    background-color: lightgray;
+    background-color: #d7d0cd;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
 }
@@ -15,7 +15,7 @@ input[type="text"] {
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #94807a;
     width: 70%;
     box-sizing: border-box;
 }
@@ -26,12 +26,20 @@ button[type="submit"] {
     font-size: 16px;
     border-radius: 5px;
     border: none;
-    background-color: #007bff;
+    background-color: #4a3931;
     color: #fff;    
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
+p {
+    margin: 2px auto;
+}
+
+.conditions {
+    font-weight: bold;
+    margin: 7px auto;
+}
 .result {
     margin: 10px auto;
     max-width: 960px;
@@ -44,12 +52,21 @@ button[type="submit"] {
 
 .resultDay {
     margin: 10px auto;
-    max-width: 300px;
-    text-align: left;
+    width: 300px;
     border-radius: 5px;
     border: 1px solid #ccc;
     padding: 10px;
     box-sizing: border-box;
-    background-color: #fff;
+    background-color: #94807a;
 
+}
+
+.resultHour {
+    max-width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #d7d0cd
+    ;
 }
