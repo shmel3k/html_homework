@@ -6,8 +6,9 @@ body {
 
 form {
     margin: 20px auto;
-    max-width: 400px;
+    max-width: 600px;
     display: flex;
+    justify-content: space-between;
 }
 
 input[type="text"] {
@@ -15,7 +16,7 @@ input[type="text"] {
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    width: 100%;
+    width: 70%;
     box-sizing: border-box;
 }
 
@@ -29,4 +30,26 @@ button[type="submit"] {
     color: #fff;    
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.result {
+    margin: 10px auto;
+    max-width: 960px;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+   
+}
+
+.resultDay {
+    margin: 10px auto;
+    max-width: 300px;
+    text-align: left;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fff;
+
 }

@@ -30,7 +30,8 @@ function init() {
                     if (response.ok) {
                         return response.json().then(response => {
                             if (response) {
-                                weatherResultForeach(response.days);
+                           //     weatherResultForeach(response.days);
+                           weatherResult(response);
                             } else {
                                 resultDiv.innerHTML = "No recipes found";
                             }
@@ -48,17 +49,53 @@ function init() {
     });
     // Function to display weather results
 
-    function weatherResultForeach(data) {
-        data.forEach(item => {
+  /*  function weatherResultForeach(data) {
+             data.forEach(item => {
             resultDiv.innerHTML += `
+            <div class = "resultDay">
             <h2>${item.datetime}</h2>
             <p>${item.temp}</p>
             <p>${item.description}</p>
             <p>${item.icon}</p>
-            <p>${item.hours.map(hour => hour.temp).join(', ')}</p>
-
+                <div class = "resultHours">  
+                <p>${item.hours.map(hour => hour.datetime + ' ' + hour.temp).join(', ')}</p>
+                </div>
+            </div>
             `
         })
     }
+*/
+
+    function weatherResult(data) {
+        const { address, days } = data || {};
+        if (!days) {
+            displayError('Прогноз недоступен для выбранного города.');
+            return;
+        }
+    
+        resultDiv.innerHTML = `<h2>Прогноз для города: ${address}</h2>`;
+    
+        days.forEach(day => {
+            const { datetime, tempmax, tempmin, hours } = day;
+    
+            let hourlyWeather = '<h3>Погода по часам:</h3>';
+            hours.forEach(hour => {
+                hourlyWeather += `
+                    <p><strong>${hour.datetime}: </strong>${hour.temp}°C, ${hour.conditions}</p>
+                `;
+            });
+    
+            resultDiv.innerHTML += `
+                <div class="day">
+                    <h3>${datetime}</h3>
+                    <p>Максимальная температура: ${tempmax}°C</p>
+                    <p>Минимальная температура: ${tempmin}°C</p>
+                    ${hourlyWeather}
+                </div>
+            `;
+        });
+    }
+    
 }
+
 document.addEventListener("DOMContentLoaded", init);
